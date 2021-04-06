@@ -13,4 +13,5 @@ Jerry the K-12 educational robot
   
 #CONTACT
   For questions and concerns over the program feel free to contact me at rabennett@usf.edu
+  
   For legal questions or concerns, you may reach our boss at theboss@email.com
