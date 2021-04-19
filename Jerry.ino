@@ -1,4 +1,4 @@
-#include <IRremote.h> //adds the library for IR remote controller
+#include <IRremote.h> //adds the library for IR remote controller. NOTE: you must have already added this library to the arduino IDE manually
 
 //defines the command code of each button
 #define Button_0 22
@@ -77,6 +77,7 @@ void loop()//start of loop function
        case Button_4:           //if button 4 is pressed
             analogWrite(9, 0);  //sets speed pin for left wheels to 0
             analogWrite(10, 0); //sets speed pin for right wheels to 0
+            break;       //ends the switch statement
             
        case Button_ON:  //if the ON button is pressed
            AutoPilot(); //enters automatic steering mode with Ultrasonic Sensor
@@ -96,6 +97,8 @@ void loop()//start of loop function
 
 void AutoPilot()//start of autopilot function
 {
+  Serial.println("Auto Pilot Engaged"); //DEBUG
+  
   while(2 > 1){ //start of infinite while loop
     
    digitalWrite(trigPin, LOW);  //stops sensor from sending a pulse if one was active
@@ -107,9 +110,24 @@ void AutoPilot()//start of autopilot function
    duration_us = pulseIn(echoPin, HIGH); //calculates the time taken for the pulse to bounce off an object and return to the sensor
  
    distance_cm = 0.017 * duration_us; //calculates the distance to the obstacle based on the pulse time
+
+   //this checks for input of button 5 which will disegage auto pilot mode and resume manual control
+   if (IrReceiver.decode())//if the IR reciever detects a signal it can decode then...
+   {
+    IrReceiver.resume();
+    if(IrReceiver.decodedIRData.command == Button_5){
+    analogWrite(9, 0);   //sets speed pin for left wheels to 0
+    analogWrite(10, 0);  //sets speed pin for right wheels to 0
+    Serial.print("Exit autopilot");
+    break;
+    }
+   }
  
    if (distance_cm < 50)//if the obstacle is less than 50 cm away then...
    {
+       analogWrite(9, 0);   //sets speed pin for left wheels to 0
+       analogWrite(10, 0);  //sets speed pin for right wheels to 0
+       delay(50);           //waits a moment before changing direction
        MoveLeft(); //moves robot left
        delay(100); //waits 100 microseconds
    }
@@ -120,8 +138,9 @@ void AutoPilot()//start of autopilot function
    }
    Serial.print("Distance: "); //Prints "Distance: " in the serial monitor
    Serial.print(distance_cm);  //Prints the calculated distance in cm in the serial monitor
+   Serial.print('\n');         //Prints a newline for easier readability in the serial monitor
   }
-   Serial.println("Auto Pilot Engaged"); //DEBUG
+   
 }//end of AutoPilot
 
 void MoveForward()//start of MoveForward function
@@ -138,7 +157,7 @@ void MoveForward()//start of MoveForward function
    digitalWrite(RightMotor2, LOW);
  
    Serial.println("Moving Forward"); //DEBUG
-   delay(1000);
+   delay(500);
 }//end of MoveForward
 
 void MoveBackward()
@@ -155,7 +174,7 @@ void MoveBackward()
    digitalWrite(RightMotor2, HIGH);
  
    Serial.println("Moving Backward"); //DEBUG
-   delay(1000);
+   delay(500);
 }
 void MoveLeft()
 {
@@ -171,7 +190,7 @@ void MoveLeft()
    digitalWrite(LeftMotor2, HIGH);
  
    Serial.println("Moving Left"); //DEBUG
-   delay(1000);
+   delay(500);
 }
 void MoveRight()
 {
@@ -187,7 +206,5 @@ void MoveRight()
    digitalWrite(RightMotor2, HIGH);
  
    Serial.println("Moving Right"); //DEBUG
-   delay(1000);
+   delay(500);
 }
-
- 
