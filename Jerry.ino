@@ -145,8 +145,8 @@ void AutoPilot()//start of autopilot function
 
 void MoveForward()//start of MoveForward function
 {
-   analogWrite(9, 100); //sets speed pin for left wheels to 0
-   analogWrite(10, 0); //sets speed pin for right wheels to 0
+   analogWrite(9, 200); //sets speed pin for left wheels to 0
+   analogWrite(10, 200); //sets speed pin for right wheels to 0
 
    //sets left side wheels to move forward         
    digitalWrite(LeftMotor1, HIGH);
@@ -162,8 +162,8 @@ void MoveForward()//start of MoveForward function
 
 void MoveBackward()
 {
-   analogWrite(9, 100); //sets speed pin for left wheels to 0
-   analogWrite(10, 0); //sets speed pin for right wheels to 0
+   analogWrite(9, 200); //sets speed pin for left wheels to 0
+   analogWrite(10, 200); //sets speed pin for right wheels to 0
 
    //sets left side wheels to move backward
    digitalWrite(LeftMotor1, LOW);
@@ -178,8 +178,8 @@ void MoveBackward()
 }
 void MoveLeft()
 {
-   analogWrite(9, 100); //sets speed pin for left wheels to 0
-   analogWrite(10, 0); //sets speed pin for right wheels to 0
+   analogWrite(9, 200); //sets speed pin for left wheels to 0
+   analogWrite(10, 200); //sets speed pin for right wheels to 0
 
    //sets right side wheels to move forward
    digitalWrite(RightMotor1, HIGH);
@@ -194,8 +194,8 @@ void MoveLeft()
 }
 void MoveRight()
 {
-   analogWrite(9, 100); //sets speed pin for left wheels to 0
-   analogWrite(10, 0); //sets speed pin for right wheels to 0
+   analogWrite(9, 200); //sets speed pin for left wheels to 0
+   analogWrite(10, 200); //sets speed pin for right wheels to 0
 
    //sets left side wheels to move forward
    digitalWrite(LeftMotor1, HIGH);
