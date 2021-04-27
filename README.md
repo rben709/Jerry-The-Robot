@@ -12,6 +12,6 @@ Jerry the K-12 educational robot
   For the IR sensor, it should blink when a signal is being recieved, so if you don't see a blink when pressing a button it is either incorrectly installed, or the battery in the remote is dead.
   
 #CONTACT
-  For questions and concerns over the program feel free to contact me at rabennett@usf.edu
+  For questions and concerns over the program feel free to contact our lead software engineer at rabennett@usf.edu
   
   For legal questions or concerns, you may reach our boss at theboss@email.com
